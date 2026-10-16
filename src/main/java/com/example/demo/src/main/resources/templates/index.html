@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DevOps Pipeline Demo</title>
+</head>
+<body>
+    <h1>DevOps Pipeline Demo</h1>
+    <p>Welcome to our Java web application!</p>
+
+    <form action="/greet" method="post">
+        <label for="name">Enter your name:</label>
+        <input id="name" name="name" type="text">
+        <button type="submit">Greet</button>
+    </form>
+
+    <p id="message" th:if="${message}" th:text="${message}"></p>
+</body>
+</html>
