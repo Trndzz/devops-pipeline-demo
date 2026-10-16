@@ -1,0 +1,31 @@
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build and Test') {
+            steps {
+                bat 'mvn -B clean test package'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                bat 'docker build -t devops-demo:latest .'
+            }
+        }
+    }
+
+    post {
+        always {
+            junit allowEmptyResults: true,
+                  testResults: 'target/surefire-reports/*.xml'
+        }
+    }
+}
